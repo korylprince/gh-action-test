@@ -8,6 +8,7 @@ import (
 
 var nameRegexp = regexp.MustCompile("^/([a-zA-z]+)$")
 
+// HelloHandler is a http.Handler that says "Hello, name!"
 func HelloHandler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		names := nameRegexp.FindStringSubmatch(r.URL.Path)
