@@ -1,3 +1,4 @@
+project_name: gh-action-test
 before:
   hooks:
     - go mod tidy
@@ -20,3 +21,26 @@ archives:
         format: zip
 universal_binaries:
   - replace: true
+dockers:
+  - image_templates:
+    - "ghcr.io/korylprince/{{ .ProjectName }}:{{ .Tag }}"
+    - "ghcr.io/korylprince/{{ .ProjectName }}:v{{ .Major }}"
+    - "ghcr.io/korylprince/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}"
+    - "ghcr.io/korylprince/{{ .ProjectName }}:latest"
+    goarch: amd64
+    build_flag_templates:
+    - "--build-arg=BUILD_PATH={{ .ProjectName }}"
+  - image_templates:
+    - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:{{ .Tag }}"
+    - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:v{{ .Major }}"
+    - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:v{{ .Major }}.{{ .Minor }}"
+    - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:latest"
+    goarch: arm64
+    build_flag_templates:
+    - "--build-arg=BUILD_PATH={{ .ProjectName }}"
+
+docker_manifests:
+- name_template: "ghcr.io/korylprince/{{ .ProjectName }}:{{ .Tag }}"
+  image_templates:
+  - "ghcr.io/korylprince/{{ .ProjectName }}:{{ .Tag }}"
+  - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:{{ .Tag }}"
