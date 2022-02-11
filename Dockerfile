@@ -1,7 +1,9 @@
 FROM alpine:latest
 
-ARG EXECUTABLE
+ARG GO_PROJECT_NAME
+ENV GO_PROJECT_NAME=${GO_PROJECT_NAME}
 
-COPY ${EXECUTABLE} /
+COPY docker-entrypoint.sh /
+COPY ${GO_PROJECT_NAME} /
 
-CMD ["/${EXECUTABLE}"]
+ENTRYPOINT /docker-entrypoint.sh

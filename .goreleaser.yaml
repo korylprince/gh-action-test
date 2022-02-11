@@ -35,7 +35,9 @@ dockers:
       - "--label=org.opencontainers.image.version={{.Version}}"
       - "--label=org.opencontainers.image.source={{.GitURL}}"
       - "--platform=linux/amd64"
-      - "--build-arg=EXECUTABLE={{ .ProjectName }}"
+      - "--build-arg=GO_PROJECT_NAME={{ .ProjectName }}"
+    extra_files:
+      - docker-entrypoint.sh
   - image_templates:
       - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:{{ .Tag }}"
       - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:v{{ .Major }}"
@@ -51,7 +53,9 @@ dockers:
       - "--label=org.opencontainers.image.version={{.Version}}"
       - "--label=org.opencontainers.image.source={{.GitURL}}"
       - "--platform=linux/arm64"
-      - "--build-arg=EXECUTABLE={{ .ProjectName }}"
+      - "--build-arg=GO_PROJECT_NAME={{ .ProjectName }}"
+    extra_files:
+      - docker-entrypoint.sh
 
 docker_manifests:
 - name_template: "ghcr.io/korylprince/{{ .ProjectName }}:{{ .Tag }}"
