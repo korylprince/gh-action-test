@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"regexp"
 )
@@ -17,6 +16,6 @@ func HelloHandler() http.Handler {
 			return
 		}
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(fmt.Sprintf("Hello, %s!", names[1])))
+		w.Write([]byte("Hello, World!"))
 	})
 }
