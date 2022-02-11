@@ -2,8 +2,11 @@ package handler
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"regexp"
+
+	"github.com/google/uuid"
 )
 
 var nameRegexp = regexp.MustCompile("^/([a-zA-z]+)$")
@@ -18,5 +21,6 @@ func HelloHandler() http.Handler {
 		}
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte(fmt.Sprintf("Hello, %s!", names[1])))
+		log.Println("UUID:", uuid.NewString())
 	})
 }
