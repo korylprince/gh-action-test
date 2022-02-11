@@ -1,7 +1,7 @@
 FROM alpine:latest
 
-ARG BUILD_PATH
+ARG EXECUTABLE
 
-COPY ${BUILD_PATH} /server
+COPY ${EXECUTABLE} /
 
-CMD ["/server"]
+CMD ["/${EXECUTABLE}"]
