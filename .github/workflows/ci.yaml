@@ -1,4 +1,4 @@
-name: test
+name: ci
 
 on: 
   push:
@@ -14,7 +14,6 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.16.x, 1.17.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -23,8 +22,6 @@ jobs:
 
       - name: Set up Go
         uses: actions/setup-go@v2
-        with:
-          go-version: ${{ matrix.go-version }}
 
       - name: Use cache
         uses: actions/cache@v2
@@ -40,3 +37,12 @@ jobs:
 
       - name: Test
         run: go test ./...
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Lint
+        uses: golangci/golangci-lint-action@v2
