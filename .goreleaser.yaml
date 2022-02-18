@@ -90,17 +90,17 @@ docker_manifests:
       - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:{{ .Tag }}"
       - "ghcr.io/korylprince/{{ .ProjectName }}-arm:{{ .Tag }}"
 
-  - name_template: "ghcr.io/korylprince/{{ .ProjectName }}:{{ .Major }}"
+  - name_template: "ghcr.io/korylprince/{{ .ProjectName }}:v{{ .Major }}"
     image_templates:
-      - "ghcr.io/korylprince/{{ .ProjectName }}-amd64:{{ .Major }}"
-      - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:{{ .Major }}"
-      - "ghcr.io/korylprince/{{ .ProjectName }}-arm:{{ .Major }}"
+      - "ghcr.io/korylprince/{{ .ProjectName }}-amd64:v{{ .Major }}"
+      - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:v{{ .Major }}"
+      - "ghcr.io/korylprince/{{ .ProjectName }}-arm:v{{ .Major }}"
 
-  - name_template: "ghcr.io/korylprince/{{ .ProjectName }}:{{ .Major }}.{{ .Minor }}"
+  - name_template: "ghcr.io/korylprince/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}"
     image_templates:
-      - "ghcr.io/korylprince/{{ .ProjectName }}-amd64:{{ .Major }}.{{ .Minor }}"
-      - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:{{ .Major }}.{{ .Minor }}"
-      - "ghcr.io/korylprince/{{ .ProjectName }}-arm:{{ .Major }}.{{ .Minor }}"
+      - "ghcr.io/korylprince/{{ .ProjectName }}-amd64:v{{ .Major }}.{{ .Minor }}"
+      - "ghcr.io/korylprince/{{ .ProjectName }}-arm64:v{{ .Major }}.{{ .Minor }}"
+      - "ghcr.io/korylprince/{{ .ProjectName }}-arm:v{{ .Major }}.{{ .Minor }}"
 
   - name_template: "ghcr.io/korylprince/{{ .ProjectName }}:latest"
     image_templates:
