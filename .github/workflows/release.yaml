@@ -40,18 +40,3 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Delete intermediate Packages
-        run: |
-          curl -v --fail -X DELETE \
-            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            -H "Accept: application/vnd.github.v3+json" \
-            'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-amd64'
-          curl -v --fail -X DELETE \
-            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            -H "Accept: application/vnd.github.v3+json" \
-            'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm64'
-          curl -v --fail -X DELETE \
-            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            -H "Accept: application/vnd.github.v3+json" \
-            'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm'
