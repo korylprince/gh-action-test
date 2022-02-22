@@ -43,6 +43,7 @@ jobs:
 
       - name: Delete intermediate Packages
         run: |
+          echo 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-amd64'
           curl --request DELETE \
           --url 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-amd64' \
           --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
