@@ -43,19 +43,15 @@ jobs:
 
       - name: Delete intermediate Packages
         run: |
-          echo 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-amd64'
-          curl --request DELETE \
-          --url 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-amd64' \
-          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header "Accept: application/vnd.github.v3+json" \
-          --fail
-          curl --request DELETE \
-          --url 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm64' \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header "Accept: application/vnd.github.v3+json" \
-          --fail
-          curl --request DELETE \
-          --url 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm' \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header "Accept: application/vnd.github.v3+json" \
-          --fail
+          curl -v --fail -X DELETE \
+            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            -H "Accept: application/vnd.github.v3+json" \
+            'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-amd64'
+          curl -v --fail -X DELETE \
+            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            -H "Accept: application/vnd.github.v3+json" \
+            'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm64'
+          curl -v --fail -X DELETE \
+            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            -H "Accept: application/vnd.github.v3+json" \
+            'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm'
