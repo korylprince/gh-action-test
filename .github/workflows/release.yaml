@@ -44,17 +44,17 @@ jobs:
       - name: Delete intermediate Packages
         run: |
           curl --request POST \
-          --url https://api.github.com/users/${{ github.repository_owner }}/packages/container/ ${{ github.event.repository.name }}-amd64 \
+          --url 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-amd64' \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --fail
           curl --request POST \
-          --url https://api.github.com/users/${{ github.repository_owner }}/packages/container/ ${{ github.event.repository.name }}-arm64 \
+          --url 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm64' \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --fail
           curl --request POST \
-          --url https://api.github.com/users/${{ github.repository_owner }}/packages/container/ ${{ github.event.repository.name }}-arm \
+          --url 'https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}-arm' \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --fail
