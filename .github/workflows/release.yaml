@@ -41,17 +41,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Delete intermediate amd64 Packages
-        uses: actions/delete-package-versions@v2
-        with:
-          package-name: ${{ github.event.repository.name }}-amd64
-
-      - name: Delete intermediate arm64 Packages
-        uses: actions/delete-package-versions@v2
-        with:
-          package-name: ${{ github.event.repository.name }}-arm64
-
-      - name: Delete intermediate amd Packages
-        uses: actions/delete-package-versions@v2
-        with:
-          package-name: ${{ github.event.repository.name }}-amd
+      - name: Delete intermediate Packages
+        run: |
+          curl --request POST \
+          --url https://api.github.com/users/${{ github.repository_owner }}/packages/container/ ${{ github.event.repository.name }}-amd64 \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --fail
+          curl --request POST \
+          --url https://api.github.com/users/${{ github.repository_owner }}/packages/container/ ${{ github.event.repository.name }}-arm64 \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --fail
+          curl --request POST \
+          --url https://api.github.com/users/${{ github.repository_owner }}/packages/container/ ${{ github.event.repository.name }}-arm \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --fail
