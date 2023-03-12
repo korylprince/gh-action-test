@@ -16,12 +16,6 @@ builds:
     goarm:
       - "7"
 
-archives:
-  - format: binary
-    replacements:
-      darwin: macos
-      windows: win
-
 universal_binaries:
   - replace: true
 
